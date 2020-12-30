@@ -1,20 +1,20 @@
 import './App.css';
 import React, {useState} from "react";
-import Search from "./Search";
-import TitleText from "./TitleText";
-import SearchButton from "./SearchButton";
+import SearchContainer from "./SearchContainer";
 
 
 function App() {
-    const [state, setState] = useState({
-        searchValue: '',
-    })
+    const [searchValue, setSearchValue] = useState('');
+    const [properties, setProperties] = useState();
+
+    const searchForProperties = (search) => {
+        setProperties(search);
+    }
 
     return (
         <div className="App">
-            <TitleText/>
-            <Search state={state} setState={setState}/>
-            <SearchButton state={state}/>
+            <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue} searchForProperties={searchForProperties}/>
+            {properties && <div>{properties}</div>}
         </div>
     );
 }
