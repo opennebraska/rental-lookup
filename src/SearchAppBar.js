@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -70,8 +71,8 @@ export default function SearchAppBar() {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Omaha Renters Resource
+                    <Typography className={classes.title} noWrap>
+                        <Link component={"a"} href="/" style={{textDecoration: "none", color: "white", verticalAlign: "middle"}}>Omaha Renters Resource</Link>
                     </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
