@@ -358,7 +358,8 @@ function App() {
           <Route exact path="/properties-preview">
             {properties &&
             <React.Fragment>
-              <SearchAppBar/>
+              <SearchAppBar searchValue={searchValue} setSearchValue={setSearchValue}
+                            searchForProperties={searchForProperties}/>
               <PropertyPreviewList properties={properties}/>
             </React.Fragment>}
           </Route>

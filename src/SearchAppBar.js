@@ -6,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Link from '@material-ui/core/Link';
+import {Route} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,10 +65,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({searchValue, setSearchValue, searchForProperties}) {
     const classes = useStyles();
 
+    const handleChange = (event) => {
+        setSearchValue(event.target.value);
+    }
+
+    const handleKeyDown = (event, history) => {
+        if (event.key === 'Enter') {
+            searchForProperties(searchValue);
+            history.push("/properties-preview");
+        }
+    }
+
     return (
+      <Route render={({history}) => (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
@@ -79,16 +92,20 @@ export default function SearchAppBar() {
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
+                          placeholder="Search…"
+                          classes={{
+                              root: classes.inputRoot,
+                              input: classes.inputInput,
+                          }}
+                          inputProps={{ 'aria-label': 'search' }}
+                          value={searchValue}
+                          onChange={handleChange}
+                          onKeyDown={(event) => handleKeyDown(event, history)}
                         />
                     </div>
                 </Toolbar>
             </AppBar>
         </div>
-    );
+      )} />
+    )
 }
