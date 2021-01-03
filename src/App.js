@@ -349,7 +349,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router basename={"omaha-renters-resources"}>
+      <Router basename={"omaha-renters-report"}>
         <Switch>
           <Route exact path="/">
             <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue}
