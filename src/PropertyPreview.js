@@ -16,7 +16,7 @@ const columns = [
   { id: 'CONDITION', label: 'condition'},
   { id: 'QUALITY', label: 'quality'},
   { id: 'OWNER_NAME', label: 'owner'},
-  { id: 'VIOLATION_COUNT', label: 'violation-count'},
+  { id: 'VIOLATION_COUNT', label: 'violations'},
 ];
 
 const useStyles = makeStyles({
