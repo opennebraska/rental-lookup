@@ -2,8 +2,8 @@ import './App.css';
 import React, {useState} from "react";
 import SearchContainer from "./SearchContainer";
 import SearchAppBar from "./SearchAppBar";
-import PropertyPreviewList from "./PropertyPreviewList";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import PropertyPreview from "./PropertyPreview";
 
 
 function App() {
@@ -360,7 +360,7 @@ function App() {
             <React.Fragment>
               <SearchAppBar searchValue={searchValue} setSearchValue={setSearchValue}
                             searchForProperties={searchForProperties}/>
-              <PropertyPreviewList properties={properties}/>
+              <PropertyPreview properties={properties}/>
             </React.Fragment>}
           </Route>
         </Switch>
