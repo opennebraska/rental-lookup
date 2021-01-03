@@ -5,5 +5,5 @@ const useStyles = makeStyles({ titleText: { marginTop: 100, marginBottom: 30}})
 
 export default function TitleText() {
     const classes = useStyles();
-    return <Typography variant='h3' component='h1' className={classes.titleText}>Omaha Rental Properties</Typography>
+    return <Typography variant='h3' component='h1' className={classes.titleText}>Omaha Renters Report</Typography>
 }
