@@ -2,18 +2,19 @@ import TextField from "@material-ui/core/TextField";
 import {InputAdornment, makeStyles} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
-import {Route} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({main: {maxWidth: '95%', width: 500, marginBottom: 20}, root: {borderRadius: 25}})
 
 export default function Search({searchValue, setSearchValue, searchForProperties}) {
   const classes = useStyles();
+  let history = useHistory();
 
   const handleChange = (event) => {
     setSearchValue(event.target.value);
   }
 
-  const handleKeyDown = (event, history) => {
+  const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       searchForProperties(searchValue);
       history.push("/properties-preview");
@@ -21,7 +22,6 @@ export default function Search({searchValue, setSearchValue, searchForProperties
   }
 
   return (
-    <Route render={({history}) => (
       <TextField
         variant='outlined'
         placeholder='Search by address, landlord, rental company....'
@@ -33,8 +33,7 @@ export default function Search({searchValue, setSearchValue, searchForProperties
         autoFocus
         value={searchValue}
         onChange={handleChange}
-        onKeyDown={(event) => handleKeyDown(event, history)}
+        onKeyDown={(event) => handleKeyDown(event)}
       />
-    )}/>
   )
 }

@@ -6,7 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Link from '@material-ui/core/Link';
-import {Route} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -67,12 +67,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar({searchValue, setSearchValue, searchForProperties}) {
     const classes = useStyles();
-
+    let history = useHistory();
     const handleChange = (event) => {
         setSearchValue(event.target.value);
     }
 
-    const handleKeyDown = (event, history) => {
+    const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             searchForProperties(searchValue);
             history.push("/properties-preview");
@@ -80,7 +80,6 @@ export default function SearchAppBar({searchValue, setSearchValue, searchForProp
     }
 
     return (
-      <Route render={({history}) => (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
@@ -106,6 +105,5 @@ export default function SearchAppBar({searchValue, setSearchValue, searchForProp
                 </Toolbar>
             </AppBar>
         </div>
-      )} />
     )
 }
