@@ -84,7 +84,7 @@ export default function SearchAppBar({searchValue, setSearchValue, searchForProp
             <AppBar position="static">
                 <Toolbar>
                     <Typography className={classes.title} noWrap>
-                        <Link component={"a"} href="/" style={{textDecoration: "none", color: "white", verticalAlign: "middle"}}>Omaha Renters Report</Link>
+                        <Link component={"a"} href="/" style={{textDecoration: "none", color: "white", verticalAlign: "middle"}}>Omaha Rental Lookup</Link>
                     </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>

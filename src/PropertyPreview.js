@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import {useHistory} from "react-router-dom";
 
 const columns = [
   { id: 'ADDRESS2', label: 'address'},
@@ -32,6 +33,7 @@ export default function PropertyPreview({ properties }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  let history = useHistory();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -64,7 +66,7 @@ export default function PropertyPreview({ properties }) {
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.PIN} onClick={() => history.push(`/property/${row.PIN}`)}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (

@@ -4,6 +4,7 @@ import SearchContainer from "./SearchContainer";
 import SearchAppBar from "./SearchAppBar";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import PropertyPreview from "./PropertyPreview";
+import PropertyDetail from "./PropertyDetail";
 
 
 function App() {
@@ -349,7 +350,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router basename={"omaha-renters-report"}>
+      <Router basename={"omaha-rental-lookup"}>
         <Switch>
           <Route exact path="/">
             <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue}
@@ -362,6 +363,11 @@ function App() {
                             searchForProperties={searchForProperties}/>
               <PropertyPreview properties={properties}/>
             </React.Fragment>}
+          </Route>
+          <Route path="/property/:pin">
+            <SearchAppBar searchValue={searchValue} setSearchValue={setSearchValue}
+                          searchForProperties={searchForProperties}/>
+            <PropertyDetail />
           </Route>
         </Switch>
       </Router>
