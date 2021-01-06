@@ -11,13 +11,13 @@ import TableRow from '@material-ui/core/TableRow';
 import {useHistory} from "react-router-dom";
 
 const columns = [
-  { id: 'ADDRESS2', label: 'address'},
-  { id: 'PROP_CITY', label: 'city'},
-  { id: 'PROP_ZIP', label: 'zip'},
-  { id: 'CONDITION', label: 'condition'},
-  { id: 'QUALITY', label: 'quality'},
-  { id: 'OWNER_NAME', label: 'owner'},
-  { id: 'VIOLATION_COUNT', label: 'violations'},
+  { id: 'address2', label: 'address'},
+  { id: 'propertyCity', label: 'city'},
+  { id: 'propertyZip', label: 'zip'},
+  { id: 'condition', label: 'condition'},
+  { id: 'quality', label: 'quality'},
+  { id: 'ownerName', label: 'owner'},
+  { id: 'violationCount', label: 'violations'},
 ];
 
 const useStyles = makeStyles({
@@ -45,7 +45,6 @@ export default function PropertyPreview({ properties }) {
   };
 
 
-  const rows = properties.map((property) => { return { ...property, VIOLATION_COUNT: property.VIOLATIONS.length}});
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -64,9 +63,9 @@ export default function PropertyPreview({ properties }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {properties.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.PIN} onClick={() => history.push(`/property/${row.PIN}`)}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.pin} onClick={() => history.push(`/property/${row.pin}`)}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
@@ -84,7 +83,7 @@ export default function PropertyPreview({ properties }) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={properties.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
