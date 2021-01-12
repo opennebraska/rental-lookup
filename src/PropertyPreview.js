@@ -25,7 +25,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 440,
+    maxHeight: '100%',
   },
 });
 
@@ -44,6 +44,13 @@ export default function PropertyPreview({ properties }) {
     setPage(0);
   };
 
+  properties = properties.map(property => {
+    if( property.violationCount === "") {
+      return {...property, violationCount: '0'};
+    } else {
+      return property;
+    }
+  })
 
   return (
     <Paper className={classes.root}>
