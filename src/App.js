@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router basename={"omaha-rental-lookup"}>
+      <Router basename={"rental-lookup"}>
         <Switch>
           <Route exact path="/">
             <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue}
