@@ -8,9 +8,11 @@ import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import PropTypes from "prop-types";
 import axios from "axios";
+import getLandlordApiUrl from "./Config";
 
 const getProperty = async (pin) => {
-  const { data: property } = await axios.get(`http://localhost:3001/properties/${pin}`);
+  const landlordApiUrl = getLandlordApiUrl();
+  const { data: property } = await axios.get(`${landlordApiUrl}/properties/${pin}`);
   return property
 }
 

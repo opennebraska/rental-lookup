@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import PropertyPreview from "./PropertyPreview";
 import PropertyDetail from "./PropertyDetail";
 import axios from "axios";
+import getLandlordApiUrl from "./Config";
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
   const [properties, setProperties] = useState();
 
   const searchForProperties = async (search) => {
-    const {data: properties} = await axios.get(`http://localhost:3001/properties?search=${search}`);
+    const landlordApiUrl  = getLandlordApiUrl();
+    const {data: properties} = await axios.get(`${landlordApiUrl}/properties?search=${search}`);
     setProperties(properties);
   }
 
