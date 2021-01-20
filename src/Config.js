@@ -3,5 +3,5 @@ export default function getLandlordApiUrl() {
   if (baseUrl === "localhost:3000") {
     return 'http://localhost:3001';
   }
-  return 'https://omaha-landlords.herokuapp.com';
+  return 'https://codefornebraska-housing.herokuapp.com';
 }
