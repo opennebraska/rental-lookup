@@ -25,7 +25,7 @@ export default function PropertyDetail(props) {
     async function fetchData() {
       const property = await getProperty(pin);
       setSelectedProperty({condition: "", quality: "", ...property});
-      setEncodedPropertyAddress(encodeURIComponent(`${property.addressLa}, ${property.propertyCity}, NE ${property.propertyZip}`));
+      setEncodedPropertyAddress(encodeURIComponent(`${property.addressLA}, ${property.propertyCity}, NE ${property.propertyZip}`));
     }
     fetchData();
   }, [pin]);
@@ -49,7 +49,7 @@ export default function PropertyDetail(props) {
           </Box>
           <Box>
             <Typography variant={"h4"} gutterBottom>Property</Typography>
-            <Typography variant={"body1"} component={"p"}>{selectedProperty.addressLa}</Typography>
+            <Typography variant={"body1"} component={"p"}>{selectedProperty.addressLA}</Typography>
             <Typography variant={"body1"} component={"p"}>{selectedProperty.propertyCity}, NE {selectedProperty.propertyZip}</Typography>
             <Typography variant={"body1"} component={"p"} gutterBottom><Link target="_blank" rel="noreferrer" href={`http://maps.google.com/?q=${encodedPropertyAddress}`}>View On Map</Link></Typography>
             <Typography variant={"h6"} gutterBottom>Condition/Quality</Typography>
