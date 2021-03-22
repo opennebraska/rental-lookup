@@ -6,7 +6,7 @@ import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({main: {maxWidth: '95%', width: 500, marginBottom: 20}, root: {borderRadius: 25}})
 
-export default function Search({searchValue, setSearchValue, searchForProperties}) {
+export default function Search({searchValue, setSearchValue }) {
   const classes = useStyles();
   let history = useHistory();
 
@@ -16,8 +16,7 @@ export default function Search({searchValue, setSearchValue, searchForProperties
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      searchForProperties(searchValue);
-      history.push("/properties-preview");
+      history.push("/properties-preview?search="+encodeURIComponent(searchValue));
     }
   }
 

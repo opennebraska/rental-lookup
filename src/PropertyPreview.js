@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import {useHistory} from "react-router-dom";
+import {searchForProperties} from "./utility/search-for-properties";
+import {parse} from "qs";
 
 const columns = [
   { id: 'address2', label: 'address'},
@@ -29,11 +31,30 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PropertyPreview({ properties }) {
+export default function PropertyPreview(props) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
+  const [properties, setProperties] = React.useState([]);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   let history = useHistory();
+
+  useEffect(() => {
+    async function fetchData() {
+      const queryString = parse(props.location.search, {ignoreQueryPrefix: true});
+      const propertyResponse = await searchForProperties(queryString.search)
+
+      const properties = propertyResponse.map(property => {
+        if (property.violationCount === "") {
+          return {...property, violationCount: '0'};
+        } else {
+          return property;
+        }
+      }, [])
+
+      setProperties(properties);
+    }
+    fetchData().then();
+  }, [props.location.search])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -43,14 +64,6 @@ export default function PropertyPreview({ properties }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  properties = properties.map(property => {
-    if( property.violationCount === "") {
-      return {...property, violationCount: '0'};
-    } else {
-      return property;
-    }
-  })
 
   return (
     <Paper className={classes.root}>

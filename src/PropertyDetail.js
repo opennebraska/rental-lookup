@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import PropTypes from "prop-types";
 import axios from "axios";
 import getLandlordApiUrl from "./Config";
 
@@ -62,7 +61,3 @@ export default function PropertyDetail(props) {
   );
 }
 
-PropertyDetail.propTypes = {
-  parcels: PropTypes.array.isRequired,
-  source: PropTypes.string.isRequired,
-};

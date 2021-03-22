@@ -22,24 +22,14 @@ function App() {
   return (
     <div className="App">
       <Router basename={"rental-lookup"}>
+        <SearchAppBar searchValue={searchValue} setSearchValue={setSearchValue}
+                      searchForProperties={searchForProperties}/>
         <Switch>
           <Route exact path="/">
-            <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue}
-                             searchForProperties={searchForProperties}/>
+            <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue} />
           </Route>
-          <Route exact path="/properties-preview">
-            {properties &&
-            <React.Fragment>
-              <SearchAppBar searchValue={searchValue} setSearchValue={setSearchValue}
-                            searchForProperties={searchForProperties}/>
-              <PropertyPreview properties={properties}/>
-            </React.Fragment>}
-          </Route>
-          <Route path="/property/:pin">
-            <SearchAppBar searchValue={searchValue} setSearchValue={setSearchValue}
-                          searchForProperties={searchForProperties}/>
-            <PropertyDetail />
-          </Route>
+          <Route exact path="/properties-preview" component={PropertyPreview} />
+          <Route path="/property/:pin" component={PropertyDetail} />
         </Switch>
       </Router>
     </div>
