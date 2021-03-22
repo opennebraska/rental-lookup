@@ -6,14 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import axios from "axios";
-import getLandlordApiUrl from "./Config";
-
-const getProperty = async (pin) => {
-  const landlordApiUrl = getLandlordApiUrl();
-  const { data: property } = await axios.get(`${landlordApiUrl}/properties/${pin}`);
-  return property
-}
+import {getProperty} from "./landlords-api/landlords-api";
 
 export default function PropertyDetail(props) {
   const [selectedProperty, setSelectedProperty] = useState({quality: "", condition: ""});

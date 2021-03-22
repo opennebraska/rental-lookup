@@ -6,3 +6,9 @@ export const searchForProperties = async (search: string) => {
     const {data: properties} = await axios.get(`${landlordApiUrl}/properties?search=${search}`);
     return properties;
 }
+
+export const getProperty = async (pin: string) => {
+    const landlordApiUrl = getLandlordApiUrl();
+    const { data: property } = await axios.get(`${landlordApiUrl}/properties/${pin}`);
+    return property
+}

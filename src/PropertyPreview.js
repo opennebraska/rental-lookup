@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import {useHistory} from "react-router-dom";
-import {searchForProperties} from "./utility/search-for-properties";
+import {searchForProperties} from "./landlords-api/landlords-api";
 import {parse} from "qs";
 
 const columns = [
