@@ -74,8 +74,7 @@ export default function SearchAppBar({searchValue, setSearchValue, searchForProp
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            searchForProperties(searchValue);
-            history.push("/properties-preview");
+            history.push("/properties-preview?search="+encodeURIComponent(searchValue))
         }
     }
 
