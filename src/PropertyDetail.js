@@ -6,18 +6,21 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import {getProperty} from "./landlords-api/landlords-api";
+import {getProperty, getPropertyImage} from "./landlords-api/landlords-api";
 
 export default function PropertyDetail(props) {
   const [selectedProperty, setSelectedProperty] = useState({quality: "", condition: ""});
   const [encodedPropertyAddress, setEncodedPropertyAddress] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const {pin} = useParams();
   useEffect(() => {
     async function fetchData() {
       const property = await getProperty(pin);
+      const propertyImageUrl = await getPropertyImage(pin);
       setSelectedProperty({condition: "", quality: "", ...property});
       setEncodedPropertyAddress(encodeURIComponent(`${property.addressLA}, ${property.propertyCity}, NE ${property.propertyZip}`));
+      setImageUrl(propertyImageUrl);
     }
     fetchData();
   }, [pin]);
@@ -33,11 +36,7 @@ export default function PropertyDetail(props) {
       <Card>
         <CardContent>
           <Box mb={2}>
-            <Typography variant={"h4"} gutterBottom>Owner</Typography>
-            <Typography variant={"body1"} component={"p"}>{selectedProperty.ownerName}</Typography>
-            <Typography variant={"body1"} component={"p"}>{selectedProperty.address2}</Typography>
-            <Typography variant={"body1"} component={"p"}>{selectedProperty.ownerCity}, {selectedProperty.OWNER_STAT} {selectedProperty.ownerZip}</Typography>
-            {/*<Typography variant={"body1"} component={"p"} gutterBottom><Link href={`/landlord/${props.source}?search=${encodeURIComponent(selectedProperty.ownerName)}`}>{`View All ${propertyCount} Properties`}</Link></Typography>*/}
+            {imageUrl && <img src={imageUrl} alt={`Property at ${selectedProperty.addressLA}`}/>}
           </Box>
           <Box>
             <Typography variant={"h4"} gutterBottom>Property</Typography>
@@ -47,6 +46,13 @@ export default function PropertyDetail(props) {
             <Typography variant={"h6"} gutterBottom>Condition/Quality</Typography>
             <Typography variant={"body1"} component={"p"}>Condition: {selectedProperty.condition.trim() || "Unknown"}</Typography>
             <Typography variant={"body1"} component={"p"} gutterBottom>Quality: {selectedProperty.quality.trim() || "Unknown"}</Typography>
+          </Box>
+          <Box mb={2}>
+            <Typography variant={"h4"} gutterBottom>Owner</Typography>
+            <Typography variant={"body1"} component={"p"}>{selectedProperty.ownerName}</Typography>
+            <Typography variant={"body1"} component={"p"}>{selectedProperty.address2}</Typography>
+            <Typography variant={"body1"} component={"p"}>{selectedProperty.ownerCity}, {selectedProperty.OWNER_STAT} {selectedProperty.ownerZip}</Typography>
+            {/*<Typography variant={"body1"} component={"p"} gutterBottom><Link href={`/landlord/${props.source}?search=${encodeURIComponent(selectedProperty.ownerName)}`}>{`View All ${propertyCount} Properties`}</Link></Typography>*/}
           </Box>
         </CardContent>
       </Card>

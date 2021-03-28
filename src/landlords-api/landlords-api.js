@@ -12,3 +12,9 @@ export const getProperty = async (pin) => {
     const { data: property } = await axios.get(`${landlordApiUrl}/properties/${pin}`);
     return property
 }
+
+export const getPropertyImage = async (pin) => {
+    const landlordApiUrl = getLandlordApiUrl();
+    const response_url = await axios.get(`${landlordApiUrl}/properties/${pin}/image`);
+    return response_url?.data?.image_url
+}
