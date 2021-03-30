@@ -12,6 +12,7 @@ import {useHistory} from "react-router-dom";
 import {searchForProperties} from "./landlords-api/landlords-api";
 import {parse} from "qs";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {Typography} from "@material-ui/core";
 
 const columns = [
   { id: 'address2', label: 'address'},
@@ -67,7 +68,7 @@ export default function PropertyPreview(props) {
     setPage(0);
   };
 
-  if(!loading) {
+  function renderPropertyTable() {
     return <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
@@ -113,6 +114,14 @@ export default function PropertyPreview(props) {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+  }
+
+  if(!loading) {
+    if(properties.length) {
+      return renderPropertyTable()
+    } else {
+      return <Typography variant={"h6"} style={{marginTop: 120}} >No results found. Try another search.</Typography>
+    }
   } else {
     return <CircularProgress size={100} style={{marginTop: 120}} />
   }
