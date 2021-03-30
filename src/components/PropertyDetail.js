@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import {getProperty, getPropertyImage} from "./landlords-api/landlords-api";
+import {getProperty, getPropertyImage} from "../landlords-api/landlords-api";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function PropertyDetail(props) {

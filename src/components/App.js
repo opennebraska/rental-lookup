@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import PropertyPreview from "./PropertyPreview";
 import PropertyDetail from "./PropertyDetail";
 import axios from "axios";
-import getLandlordApiUrl from "./Config";
+import getLandlordApiUrl from "../Config";
 
 
 function App() {
