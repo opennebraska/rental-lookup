@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import {useHistory} from "react-router-dom";
 import {searchForProperties} from "./landlords-api/landlords-api";
 import {parse} from "qs";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const columns = [
   { id: 'address2', label: 'address'},
@@ -36,13 +37,14 @@ export default function PropertyPreview(props) {
   const [page, setPage] = React.useState(0);
   const [properties, setProperties] = React.useState([]);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [loading, setLoading] = React.useState(true);
   let history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
       const queryString = parse(props.location.search, {ignoreQueryPrefix: true});
       const propertyResponse = await searchForProperties(queryString.search)
-
+      setLoading(false);
       const properties = propertyResponse.map(property => {
         if (property.violationCount === "") {
           return {...property, violationCount: '0'};
@@ -65,8 +67,8 @@ export default function PropertyPreview(props) {
     setPage(0);
   };
 
-  return (
-    <Paper className={classes.root}>
+  if(!loading) {
+    return <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -75,7 +77,7 @@ export default function PropertyPreview(props) {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{minWidth: column.minWidth}}
                 >
                   {column.label}
                 </TableCell>
@@ -85,7 +87,8 @@ export default function PropertyPreview(props) {
           <TableBody>
             {properties.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.pin} onClick={() => history.push(`/property/${row.pin}`)}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.pin}
+                          onClick={() => history.push(`/property/${row.pin}`)}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
@@ -110,5 +113,7 @@ export default function PropertyPreview(props) {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
-  );
+  } else {
+    return <CircularProgress size={100} style={{marginTop: 120}} />
+  }
 }
