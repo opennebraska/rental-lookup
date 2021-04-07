@@ -7,6 +7,7 @@ import PropertyPreview from "./PropertyPreview";
 import PropertyDetail from "./PropertyDetail";
 import axios from "axios";
 import getLandlordApiUrl from "../Config";
+import LandlordDetail from "./landlord/LandlordDetail";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <SearchContainer searchValue={searchValue} setSearchValue={setSearchValue} />
           </Route>
           <Route exact path="/properties-preview" component={PropertyPreview} />
+          <Route exact path="/landlord/:landlord" component={LandlordDetail} />
           <Route path="/property/:pin" component={PropertyDetail} />
         </Switch>
       </Router>
