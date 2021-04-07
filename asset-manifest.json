@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rental-lookup/static/css/main.6ec6b028.chunk.css",
+    "main.js": "/rental-lookup/static/js/main.066bfa7a.chunk.js",
+    "main.js.map": "/rental-lookup/static/js/main.066bfa7a.chunk.js.map",
+    "runtime-main.js": "/rental-lookup/static/js/runtime-main.fef08170.js",
+    "runtime-main.js.map": "/rental-lookup/static/js/runtime-main.fef08170.js.map",
+    "static/js/2.8448b40a.chunk.js": "/rental-lookup/static/js/2.8448b40a.chunk.js",
+    "static/js/2.8448b40a.chunk.js.map": "/rental-lookup/static/js/2.8448b40a.chunk.js.map",
+    "static/js/3.1818d66e.chunk.js": "/rental-lookup/static/js/3.1818d66e.chunk.js",
+    "static/js/3.1818d66e.chunk.js.map": "/rental-lookup/static/js/3.1818d66e.chunk.js.map",
+    "index.html": "/rental-lookup/index.html",
+    "static/css/main.6ec6b028.chunk.css.map": "/rental-lookup/static/css/main.6ec6b028.chunk.css.map",
+    "static/js/2.8448b40a.chunk.js.LICENSE.txt": "/rental-lookup/static/js/2.8448b40a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fef08170.js",
+    "static/js/2.8448b40a.chunk.js",
+    "static/css/main.6ec6b028.chunk.css",
+    "static/js/main.066bfa7a.chunk.js"
+  ]
+}
